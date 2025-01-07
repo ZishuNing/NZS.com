@@ -7,6 +7,7 @@
 // import { initTooltips } from './modules/utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+	ImgLazyLoading();
 	addThemeList();
 	initTheme();
 	initEffects();
