@@ -4,7 +4,7 @@ import { removeIDFromHash } from './routing.js';
 import { getEffectsDisabledState } from './effects.js';
 import { CONFIG } from '../config.js';
 
-const BLOG_URL = CONFIG.useExample ? '/src/example/blog.xml' : CONFIG.blogUrl;
+const BLOG_URL = CONFIG.useExample ? './src/example/blog.xml' : CONFIG.blogUrl;
 const POSTS_CONTAINER = document.getElementById('blog-window');
 
 let cachedPosts = [];

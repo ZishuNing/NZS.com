@@ -1,6 +1,6 @@
 import { CONFIG } from '../config.js';
 
-const EFFECTS_CSS_URL = '/assets/css/effects.css';
+const EFFECTS_CSS_URL = '../../../assets/css/style.css';
 
 if (CONFIG.effectsDisabledByDefault && !('effectsDisabled' in localStorage)) {
 	localStorage.setItem('effectsDisabled', true);
