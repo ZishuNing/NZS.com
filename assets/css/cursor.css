@@ -1,0 +1,13 @@
+/* 全局样式 */
+body {
+    cursor: url("../images/cursor/NORMAL SELECT.cur"), auto; /* 默认选择光标 */
+}
+
+/* 文本元素的鼠标光标 */
+p, .text-select {
+    cursor: url("../images/cursor/WIB.cur"), text; /* 文本选择光标 */
+}
+
+a:hover,summary:hover, .row img:hover,.post:hover {
+	cursor: url("../images/cursor/LINK SELECT.cur"), pointer; /* 链接选择光标 */
+}
