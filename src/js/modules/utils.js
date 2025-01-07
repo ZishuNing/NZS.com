@@ -1,4 +1,4 @@
-export function copyClipboard(text, element = null, copyIndicator = 'Copied!') {
+function copyClipboard(text, element = null, copyIndicator = 'Copied!') {
 	navigator.clipboard
 		.writeText(text)
 		.then(() => {
@@ -16,7 +16,7 @@ export function copyClipboard(text, element = null, copyIndicator = 'Copied!') {
 		.catch((error) => console.error(error));
 }
 
-export function initTooltips() {
+function initTooltips() {
 	const tooltipElement = document.createElement('div');
 	tooltipElement.classList.add('tooltip');
 	tooltipElement.style.display = 'none';

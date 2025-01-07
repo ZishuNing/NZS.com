@@ -13,7 +13,7 @@
 	<link rel="icon" type="image/png" href="./assets/images/favicon.png">
 	<link rel="canonical" href="https://zishuning.github.io/NZS.com/">
 
-	<script type="module" src="./src/js/main.js" defer></script>
+	<script src="./src/js/main.js" defer></script>
 
 	<link rel="preload" as="font" href="./assets/fonts/terminus-webfont.woff2" type="font/woff2" crossorigin="anonymous">
 
@@ -560,6 +560,18 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Include your JS files in order -->
+    <script src="./src/js/config.js"></script>  <!-- config.js (contains the CONFIG object) -->
+	<script src="./src/js/modules/utils.js"></script>   <!-- rgb.js -->
+	<script src="./src/js/modules/effects.js"></script>   
+	<script src="./src/js/modules/animations.js"></script>   
+    <script src="./src/js/modules/theme.js"></script>   <!-- theme.js -->
+	<script src="./src/js/modules/routing.js"></script>     <!-- rgb.js -->
+	<script src="./src/js/modules/navigation.js"></script>     <!-- rgb.js -->
+    <script src="./src/js/modules/blog.js"></script>    <!-- blog.js -->
+	<script src="./src/js/archive.js"></script>    <!-- pictures.js -->
+    <script src="./src/js/main.js"></script>    <!-- main.js (entry point) -->
 </body>
 
 </html>

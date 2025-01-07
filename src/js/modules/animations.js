@@ -1,6 +1,6 @@
 
-import { CONFIG } from '../config.js';
-import { getEffectsDisabledState } from './effects.js';
+// import { CONFIG } from '../config.js';
+// import { getEffectsDisabledState } from './effects.js';
 
 /**
  * Animates the text content of an element by fading in each letter.
@@ -10,7 +10,7 @@ import { getEffectsDisabledState } from './effects.js';
  * @param {number} [fadeDuration=250] - The duration in milliseconds for the fade-in effect.
  * @param {boolean} [blur=false] - Whether to apply a blur effect to the letters during the animation.
  */
-export function writeAnimation(element, delay = 5, fadeDuration = 250, blur = false) {
+function writeAnimation(element, delay = 5, fadeDuration = 250, blur = false) {
 	const content = element.textContent;
 	element.textContent = '';
 
@@ -48,7 +48,7 @@ export function writeAnimation(element, delay = 5, fadeDuration = 250, blur = fa
 	}, content.length * delay + fadeDuration);
 }
 
-export function tabAnimation(tab, fadeInDelay = 16) {
+function tabAnimation(tab, fadeInDelay = 16) {
 	// const effectsDisabled = getEffectsDisabledState();
 
 	document.querySelectorAll('.fade-in.visible').forEach((element) => {
@@ -100,7 +100,7 @@ export function tabAnimation(tab, fadeInDelay = 16) {
 	// }
 }
 
-export function snowAnimation() {
+function snowAnimation() {
 	const effectsDisabled = getEffectsDisabledState();
 
 	if (!effectsDisabled) {

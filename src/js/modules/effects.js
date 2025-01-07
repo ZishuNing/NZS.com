@@ -1,4 +1,4 @@
-import { CONFIG } from '../config.js';
+// import { CONFIG } from '../config.js';
 
 const EFFECTS_CSS_URL = '../../../assets/css/style.css';
 
@@ -26,11 +26,11 @@ function toggleEffects() {
 	location.reload();
 }
 
-export function getEffectsDisabledState() {
+function getEffectsDisabledState() {
 	return effectsDisabled;
 }
 
-export function initEffectsToggle() {
+function initEffectsToggle() {
 	// Dynamic toggle link
 	if (!CONFIG.displayEffectsSwitch) {
 		document.getElementById('toggle-effects').style.display = 'none';
@@ -46,7 +46,7 @@ export function initEffectsToggle() {
 	}
 }
 
-export function initEffects() {
+function initEffects() {
 	if (
 		window.matchMedia('(max-width: 767px)').matches &&
 		!('effectsDisabled' in localStorage) &&

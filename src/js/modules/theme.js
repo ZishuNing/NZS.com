@@ -1,5 +1,5 @@
-import { CONFIG } from '../config.js';
-import { snowAnimation } from './animations.js';
+// import { CONFIG } from '../config.js';
+// import { snowAnimation } from './animations.js';
 
 // tip: add "editor.defaultColorDecorators": true to your VSCode settings.json file to make the color-picker work
 const THEMES = {
@@ -47,7 +47,7 @@ function removeRGB(rgb) {
 		.map((n) => parseInt(n));
 }
 
-export function changeTheme(theme, save = true) {
+function changeTheme(theme, save = true) {
 	const settings = THEMES[theme];
 	if (!settings) return;
 
@@ -84,7 +84,7 @@ export function changeTheme(theme, save = true) {
 	}
 }
 
-export function addThemeList() {
+function addThemeList() {
 	const THEME_LIST = document.getElementById('theme-list');
 	THEME_LIST.innerHTML = '';
 
@@ -112,9 +112,11 @@ export function addThemeList() {
 		const rainy = document.getElementById('rainy');
 		rainy.style.marginTop = '1em';
 	}
+
+	console.log('Theme list added');
 }
 
-export function initTheme() {
+function initTheme() {
 	// check if theme in local storage is available
 	if (!Object.keys(THEMES).includes(localStorage.getItem('theme'))) {
 		localStorage.removeItem('theme');

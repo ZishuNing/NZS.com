@@ -1,10 +1,10 @@
-import { writeAnimation, tabAnimation } from './animations.js';
-import { defaultHash } from './routing.js';
-import { CONFIG } from '../config.js';
+// import { writeAnimation, tabAnimation } from './animations.js';
+// import { defaultHash } from './routing.js';
+// import { CONFIG } from '../config.js';
 
 const CANVAS = document.getElementById('canvas');
 
-export function changeTab(newTab) {
+function changeTab(newTab) {
 	if (newTab === 'home') {
 		window.scrollTo(0, 0);
 	} else {
@@ -37,7 +37,7 @@ function changePictureColl(event, coll) {
 	document.getElementById('nav-tabs').scrollIntoView({ behavior: 'smooth' });
 }
 
-export function initPictureColl() {
+function initPictureColl() {
 	document.querySelectorAll('.pic-coll-tabs').forEach((element) => {
 		element.addEventListener('click', (event) => changePictureColl(event, element.dataset.id));
 	});

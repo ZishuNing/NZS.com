@@ -1,6 +1,6 @@
-import { CONFIG } from './config.js';
-import { initTheme } from './modules/theme.js';
-import { initEffects } from './modules/effects.js';
+// import { CONFIG } from './config.js';
+// import { initTheme } from './modules/theme.js';
+// import { initEffects } from './modules/effects.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 	initTheme();

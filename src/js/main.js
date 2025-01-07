@@ -1,10 +1,10 @@
-import { CONFIG } from './config.js';
-import { initTheme, addThemeList } from './modules/theme.js';
-import { initEffects, initEffectsToggle } from './modules/effects.js';
-import { initPosts } from './modules/blog.js';
-import { initPictureColl } from './modules/navigation.js';
-import { initRouting } from './modules/routing.js';
-import { initTooltips } from './modules/utils.js';
+// import { CONFIG } from './config.js';
+// import { initTheme, addThemeList } from './modules/theme.js';
+// import { initEffects, initEffectsToggle } from './modules/effects.js';
+// import { initPosts } from './modules/blog.js';
+// import { initPictureColl } from './modules/navigation.js';
+// import { initRouting } from './modules/routing.js';
+// import { initTooltips } from './modules/utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 	addThemeList();

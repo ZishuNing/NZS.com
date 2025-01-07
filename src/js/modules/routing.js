@@ -1,10 +1,10 @@
-import { openPost, initPosts } from './blog.js';
-import { changeTab } from './navigation.js';
-import { CONFIG } from '../config.js';
+// import { openPost, initPosts } from './blog.js';
+// import { changeTab } from './navigation.js';
+// import { CONFIG } from '../config.js';
 
 const DEFAULT_HASH = CONFIG.defaultHash;
 
-export function routing(hash) {
+function routing(hash) {
 	const [route, query] = hash.slice(1).split('?');
 	const params = new URLSearchParams(query || '');
 
@@ -22,15 +22,15 @@ export function routing(hash) {
 	changeTab(route);
 }
 
-export function defaultHash() {
+function defaultHash() {
 	location.hash = DEFAULT_HASH;
 }
 
-export function removeIDFromHash() {
+function removeIDFromHash() {
 	location.hash = location.hash.split('?')[0];
 }
 
-export function initRouting() {
+function initRouting() {
 	window.addEventListener('hashchange', function () {
 		routing(location.hash);
 	});

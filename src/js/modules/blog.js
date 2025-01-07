@@ -1,8 +1,8 @@
-import { copyClipboard } from './utils.js';
-import { writeAnimation } from './animations.js';
-import { removeIDFromHash } from './routing.js';
-import { getEffectsDisabledState } from './effects.js';
-import { CONFIG } from '../config.js';
+// import { copyClipboard } from './utils.js';
+// import { writeAnimation } from './animations.js';
+// import { removeIDFromHash } from './routing.js';
+// import { getEffectsDisabledState } from './effects.js';
+// import { CONFIG } from '../config.js';
 
 const BLOG_URL = CONFIG.useExample ? './src/example/blog.xml' : CONFIG.blogUrl;
 const POSTS_CONTAINER = document.getElementById('blog-window');
@@ -11,7 +11,7 @@ let cachedPosts = [];
 let lastFetched = 0;
 let CACHE_DURATION = 300000; // 5 minutes (in ms)
 
-export async function fetchPosts() {
+async function fetchPosts() {
 	try {
 		const now = Date.now();
 		if (cachedPosts.length > 0 && now - lastFetched < CACHE_DURATION) {
@@ -79,13 +79,13 @@ function createPostElement(post) {
 	`;
 }
 
-export function initPosts() {
+function initPosts() {
 	fetchPosts()
 		.then((posts) => (POSTS_CONTAINER.innerHTML = posts.map(createPostElement).join('')))
 		.catch((error) => console.error(error));
 }
 
-export function openPost(postId) {
+function openPost(postId) {
 	fetchPosts()
 		.then((posts) => {
 			const post = posts.find((p) => p.id === postId);

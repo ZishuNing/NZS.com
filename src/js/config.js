@@ -1,5 +1,5 @@
-export const CONFIG = {
-	defaultTheme: 'terminal',
+const CONFIG = {
+	defaultTheme: 'R61G150B51',
 	seasonalTheme: false, // will change the default theme based on the date
 
 	// effects
