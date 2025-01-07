@@ -1,388 +1,565 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zishu Ning</title>
-    //Press Start 2P
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
-        body,
-        .marquee-container,
-        .vertical-marquee-left,
-        .vertical-marquee-right {
-            background-color: black;
-        }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
+		content="Richard-Apps' personal webpage! Explore a place with all my projects, pictures, and thoughts. Featuring a terminal-inspired design with stunning effects.">
+	<meta name="author" content="Richard-Apps">
 
-        body,
-        .marquee-text,
-        .vertical-text,
-        .project-category,
-        .project-title,
-        .project-description {
-            color: green;
-            font-family: 'Press Start 2P', cursive;
-            /* 使用像素字体 */
-        }
+	<title>RichardApps' Personal Website: Coding, Photography, and More</title>
 
-        body {
-            margin: 0;
-            padding: 20px;
-            cursor: help;
-        }
+	<link rel="icon" type="image/png" href="/assets/images/favicon.png">
+	<link rel="canonical" href="https://www.richardapps.net">
 
-        .marquee-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            height: 9vh;
-            z-index: 100;
-        }
+	<script type="module" src="/src/js/main.js" defer></script>
 
-        /* .vertical-marquee-left {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100vh;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            overflow: hidden;
-            z-index: 5;
-            display: flex;
-        }
+	<link rel="preload" as="font" href="/assets/fonts/terminus-webfont.woff2" type="font/woff2" crossorigin="anonymous">
 
-        .vertical-marquee-right {
-            position: fixed;
-            right: 0;
-            top: 0;
-            height: 100vh;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            overflow: hidden;
-            z-index: 5;
-            display: flex;
-        } */
+	<link rel="stylesheet" href="/assets/css/style.css?v=4">
+	<!-- increase version after significant changes to prevent browsers from using a old cached version (cache busting) -->
 
-        /* .vertical-text {
-            display: inline-block;
-            font-size: 80px;
-            letter-spacing: 5px;
-            padding: 5px 0;
-        }
+	<meta property="og:title" content="RichardApps">
+	<meta property="og:description"
+		content="RichardApps' personal webpage! Explore a place with all my projects, pictures, and thoughts. Featuring a terminal-inspired design with stunning effects.">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="https://richardapps.net">
 
-        .vertical-text-left {
-            animation: scroll-up 5s linear infinite;
-        }
+	<meta name="keywords" content="RichardApps, Richard Apps, Richard-Apps">
+	<meta name="robots" content="index, follow">
+	<meta name="revisit-after" content="7 days">
 
-        .vertical-text-right {
-            animation: scroll-down 5s linear infinite;
-        } */
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+		integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer">
 
-        .marquee-text {
-            display: inline-block;
-            font-size: 8vh;
-            letter-spacing: 10px;
-            animation: scroll-left 60s linear infinite;
-            padding: 5px 0;
-            font-stretch: condensed;
-        }
-
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0%);
-            }
-
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
-        @keyframes scroll-up {
-            0% {
-                transform: translateY(0%);
-            }
-
-            100% {
-                transform: translateY(-50%);
-            }
-        }
-
-        @keyframes scroll-down {
-            0% {
-                transform: translateY(-50%);
-            }
-
-            100% {
-                transform: translateY(0%);
-            }
-        }
-
-        .marquee-content {
-            display: inline-flex;
-            position: absolute;
-            white-space: nowrap;
-        }
-
-        /* 双倍内容 */
-        .clone {
-            margin-left: 20px;
-        }
-
-        .vertical-clone {
-            margin-top: 20px;
-        }
-
-        .portfolio {
-            max-width: 48vw;
-            margin: 15vh auto 0;
-            padding: 0 100px;
-        }
-
-        .project {
-            margin-bottom: 60px;
-        }
-
-        .project-category {
-            text-align: left;
-            font-size: 1.3vw;
-            margin-bottom: 20px;
-            padding-left: 0;
-        }
-
-        .media-container {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 5px;
-            height: 33vh;
-            width: 100%;
-        }
-
-        .video-container,
-        .image-container {
-            flex: 1;
-            height: 100%;
-        }
-
-        .video-container {
-            position: relative;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .image-container div {
-            width: 100%;
-            height: 100%;
-            background-color: #ddd;
-        }
-
-        .project-description {
-            line-height: 1.6;
-            margin-bottom: 10vh;
-        }
-
-        .project-title {
-            font-size: .7vw;
-            font-weight: bold;
-            margin-bottom: 1vh;
-        }
-
-        @media (max-width: 768px) {
-            .media-container {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .video-container,
-            .image-container {
-                width: 100%;
-                height: 200px;
-            }
-
-            .portfolio {
-                padding: 0 50px;
-            }
-        }
-    </style>
+	<style>
+		.no-fouc {
+			visibility: hidden;
+		}
+	</style>
 </head>
 
-<body>
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <span
-                class="marquee-text">NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;</span>
-            <span
-                class="marquee-text clone">NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;NZS&nbsp;</span>
-        </div>
-    </div>
+<body class="no-fouc">
+	<script>
+		// prevent unstyled content css flash in firefox
+		document.addEventListener('DOMContentLoaded', function () {
+			document.body.classList.remove('no-fouc');
+		});
+	</script>
+	<noscript>
+		<h2 id="noscript-warning">You are viewing a limited version of this site because JavaScript is disabled.</h2>
+		<style>
+			.no-fouc {
+				visibility: visible;
+			}
 
-    <div class="portfolio">
-        <div class="project">
-            <h2 class="project-category">Art-Game</h2>
+			.hide-noscript {
+				display: none;
+			}
 
-            <div class="media-container">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/KgyatVNHhLg" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="image-container">
-                    <img src="images/ChildishLife-modified.png">
-                </div>
-            </div>
-            <div class="project-description">
-                <div class="project-title">"Childish Life: Prologue" / Main Programmer / 13k+ downloads on Steam</div>
-            </div>
+			#noscript-warning {
+				color: rgb(245, 67, 67);
+				text-align: center;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				padding: 1em;
+			}
+		</style>
+	</noscript>
+	<video id="rain-vid" src="/assets/videos/rain-bg.mp4" poster="/assets/images/rain-bg-static.png" preload="metadata"
+		onloadstart="this.playbackRate = 0.8;" autoplay muted loop playsinline>
+	</video>
+	<img id="grunge-overlay" loading="lazy">
+	<img id="noise-overlay" loading="lazy">
+	<div id="snow-container"></div>
+	<div id="canvas">
+		<header>
+			<pre id="title">
+███████╗██╗███████╗██╗  ██╗██╗   ██╗███╗   ██╗██╗███╗   ██╗ ██████╗ 
+╚══███╔╝██║██╔════╝██║  ██║██║   ██║████╗  ██║██║████╗  ██║██╔════╝ 
+  ███╔╝ ██║███████╗███████║██║   ██║██╔██╗ ██║██║██╔██╗ ██║██║  ███╗
+ ███╔╝  ██║╚════██║██╔══██║██║   ██║██║╚██╗██║██║██║╚██╗██║██║   ██║
+███████╗██║███████║██║  ██║╚██████╔╝██║ ╚████║██║██║ ╚████║╚██████╔╝
+╚══════╝╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 																	 
+				</pre>
+			<!-- <h1 id="sub-title">Works with video game development and studies, coding and arts.</h1> -->
+			<p id="toggle-effects" class="hide-noscript">Click <a id="toggle-effects-link">HERE</a> to turn effects on.
+			</p>
+		</header>
+		<br>
+		<!-- <p>Some things you might be interested in:</p> -->
+		<nav id="nav-tabs">
+			<ul>
+				<li><a id="about-tab" class="tab-switcher" href="#about">About</a></li>
+				<li><a id="projects-tab" class="tab-switcher" href="#projects">Projects</a></li>
+				<!-- <li><a id="home-tab" class="tab-switcher" href="#home">Home</a></li> -->
+				<!-- <li><a id="pictures-tab" class="tab-switcher" href="#pictures">Pictures</a></li> -->
+				<!-- <li class="hide-noscript"><a id="blog-tab" class="tab-switcher" href="#blog">blog</a></li> -->
+				<li><a id="resources-tab" class="tab-switcher" href="#resources"><strong>相機閃光</strong></a></li>
+				
+			</ul>
+		</nav>
 
-            <div class="media-container">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/WlKE1Yvp3aM" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="image-container">
-                    <img src="images/SPACE.png">
-                </div>
-            </div>
-            <div class="project-description">
-                <div class="project-title">"S p A c E" / Producer & Designer & Artist & Programmer / GN! GameJam #15
-                </div>
-            </div>
+		<div id="about" class="tabs">
+			<div class="grid">
+				<div class="grid-row">
+					<div class="grid-row-box">
+						<h2>About me</h2>
+						<p>-> I am currently studying Software Engineering at <em>South China Normal University</em>.
+						</p>
+						<p>-> I am a game developer, digital artist, and an independent scholar of game studies.</p>
+						<p>-> I am the lead programmer at <em>Littleroot Studio</em>, which developed <em>Childish
+								Life</em>.</p>
+						<p>-> My work focuses on conceptual reflections and poetic experiences, existing at the
+							intersection between art and games.</p>
 
-            <div class="media-container">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/A9rlGoFqYAw" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="image-container">
-                    <img src="images/TWHA.png">
-                </div>
-            </div>
-            <div class="project-description">
-                <div class="project-title">"The Wrong Human Absorption" / Programmer & Designer / Gibit Gamejam - The
-                    Best
-                    Potential Game
-                </div>
-            </div>
+					</div>
+					<div class="grid-row-box">
+						<h2>What I Do</h2>
+						<p>-> Game Programming/ Game Development/ Game Studies</p>
+						<p>-> Unity/ Godot/ C#/ C++</p>
+						<p>-> Digital Art/ Philosophy/ Art History</p>
+						<p>-> Artificial Intelligence/ Software Engineering</p>
+						<p>-> User Research/ Market Research</p>
+					</div>
+				</div>
+				<div class="grid-row">
+					<div class="grid-row-box">
+						<h2>Work Experience</h2>
+						<p>-> Littleroot Studio | Lead programmer | 2023.03 - NOW</p>
+						<p>-> Hot Zone Network | Game Dev Intern | 2024.07 - 2024.09</p>
+						<p>-> Tencent Games | User Researcher Intern | 2022.10 - 2023.05</p>
+					</div>
+					<div class="grid-row-box">
+						<h2>Contact info</h2>
+						<!-- Don't forget to add the fa-fw class for fixed-width -->
+						<p class="contact-link"><i class="fas fa-envelope fa-fw"></i><a
+								href="mailto:nzs2579228376@gmail.com" target="_blank">Email: nzs2579228376@gmail.com</a>
+						</p>
+						<p class="contact-link"><i class="fa-solid fa-gamepad"></i><a
+								href="https://zishuning.itch.io/" target="_blank">Itch.io</a></p>
+						<p class="contact-link"><i class="fa-brands fa-linkedin"></i> <a
+								href="https://www.linkedin.com/in/zishu-ning-63011a333/" target="_blank">LinkedIn</a></p>
+					</div>
+					<div class="grid-row-box">
+						<div id="theme-selector">
+							<details open>
+								<summary>
+									<h2>RGB</h2>
+								</summary>
+								<div id="theme-list"></div>
+							</details>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-            <div class="media-container">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/DnVvtF9KrRc" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="image-container">
-                    <img src="images/Guardian.png">
-                </div>
-            </div>
-            <div class="project-description">
-                <div class="project-title">"Function Guardian" / Programmer & Designer / Hortor Games x Sanjiao
-                    Cup Gamejam - The Third Prize
-                </div>
-            </div>
-        </div>
+		<div id="projects" class="tabs">
+			<h2>PROJECTS</h2>
+			<h3 class="no-mobile">Selected works 2021>>>2025</h3>
+			<ul id="pr-list">
+				<li>
+					<p class="pr-title">Reimagining UI Screens as Paratextual Narrative Spaces</p>
+					<p class="pr-desc">Paper/ Reimagine utilitarian game elements in video games, such as Splash Screens, Loading Screens, and Main Menus, by using the concept of "paratext" introduced by French narratologist Gérard Genette, and introduces the concept of "Paratextual Spatial Narratives."/ accepted by the International
+						Conference on Games and Narrative 2025 (ICGaN'25) in Waterloo, Canada</p>
+					<div class="tag-list">
+						<p class="tag">Author</p>
+						<p class="tag inactive">On going</p>
+					</div>
+				</li>
+				<li>
+					<p class="pr-title">Childish Life: Prologue</p>
+					<div class="project-media-container">
+						<div class="pr-picture">
+							<!-- 这里是图片 -->
+							<img src="/assets/images/projects-pictures/ChildishLife-modified.png" class="project-image">
+						</div>
+					</div>
+					<p class="pr-desc">A top-down horror game based on Chinese folklore/ 13k+ downloads on Steam</p>
+					<div class="tag-list">
+						<p class="tag">Video Game</p>
+						<p class="tag">Lead Programmer</p>
+						<!-- <p class="tag active">Done</p> -->
+					</div>
+					<br>
+					<p><a href="https://www.youtube.com/watch?v=KgyatVNHhLg" target="_blank">[VIDEO ON YOUTUBE]</a></p>
+				</li>
+				
+				<li>
+					<p class="pr-title">S p A c E</p>
+					<div class="project-media-container">
+						<div class="pr-picture">
+							<!-- 这里是图片 -->
+							<img src="/assets/images/projects-pictures/SPACE.png" class="project-image">
+						</div>
+					</div>
+					<p class="pr-desc">A philosophical metagame/ About the concept of "Space" within computer / GN! GameJam #15 </p>
+					<div class="tag-list">
+						<p class="tag">Video Game</p>
+						<p class="tag">Producer</p>
+						<p class="tag">Designer</p>
+						<p class="tag">Artist</p>
+						<p class="tag">Programmer</p>
+						<!-- <p class="tag active">Done</p> -->
+					</div>
+					<br>
+					<p><a href="https://www.youtube.com/watch?v=WlKE1Yvp3aM" target="_blank">[VIDEO ON YOUTUBE]</a></p>
+				</li>
+				<li>
+					<p class="pr-title">Cantripped! And C2H5OC2H5</p>
+					<div class="project-media-container">
+						<div class="pr-picture">
+							<!-- 这里是图片 -->
+							<img src="/assets/images/projects-pictures/Tarot.png" class="project-image">
+						</div>
+					</div>
+					<p class="pr-desc">A set of tarot cards made with clay animation / Feinaki Beijing Animation Week </p>
+					<div class="tag-list">
+						<p class="tag">Interactive Animation</p>
+						<p class="tag">Designer</p>
+						<p class="tag">Programmer</p>
+					</div>
+					<br>
+					<p><a href="https://www.youtube.com/watch?v=qrLIuFVU2C4" target="_blank">[VIDEO ON YOUTUBE]</a></p>
+				</li>
+				<li>
+					<p class="pr-title">Book of Binary</p>
+					<div class="project-media-container">
+						<div class="pr-picture">
+							<!-- 这里是图片 -->
+							<img src="/assets/images/projects-pictures/Binary.png" class="project-image">
+						</div>
+					</div>
+					<p class="pr-desc">This work is based on an e-book reading software that I use
+						daily, with content drawn from Italo Calvino's Invisible Cities,
+						while the name is inspired by Jorge Luis Borges' The Book of
+						Sand. It discusses computer coding, cultural interaction
+						interfaces, and more.
+						As the viewer flips through the pages, the content gradually
+						becomes bizarre, trembling, and constantly changing. The
+						range of character changes includes all characters encoded in
+						Unicode. Finally, once all characters have been traversed, the
+						e-book will display a blank interface, serving as a monument
+						to characters that have not been encoded by computers. </p>
+					<div class="tag-list">
+						<p class="tag">Software</p>
+						<p class="tag">Independent Creation</p>
+					</div>
+					<br>
+					<p><a href="https://www.youtube.com/watch?v=KciOwWXHATM" target="_blank">[VIDEO ON YOUTUBE]</a></p>
+				</li>
+				<li>
+					<p class="pr-title">Wild Nights</p>
+					<div class="project-media-container">
+						<div class="pr-picture">
+							<!-- 这里是图片 -->
+							<img src="/assets/images/projects-pictures/wildnights.png" class="project-image">
+						</div>
+					</div>
+					<p class="pr-desc">Interactive poem/ "Wild Night" is a poem divided into three parts,
+						interwoven with metaphors of lighthouses, sirens, and
+						catches from the sea. It was created in collaboration with
+						Ye Tao during a residency on an island in Hainan Province,
+						China. The work explores the calls and responses between
+						women in different circumstances (a woman offshore, a
+						siren, and a fisherwoman).
+						The interactive piece I designed further extends the
+						expression of the text, inviting viewers to reveal words
+						within a deep blue sea. The Unicode encoding of the text
+						shifts with the ebb and flow of local astronomical tides.
+						Over the two-month exhibition period, the text will be
+						gradually eroded by the digital waves, transforming into a
+						new form. </p>
+					<div class="tag-list">
+						<p class="tag">Software</p>
+						<p class="tag">Designer</p>
+						<p class="tag">Programmer</p>
+					</div>
+					<br>
+					<!-- <p><a href="https://www.youtube.com/watch?v=KciOwWXHATM" target="_blank">[VIDEO ON YOUTUBE]</a></p> -->
+				</li>
+				<li>
+					<p class="pr-title">Rain, River, Bridge</p>
+					<div class="project-media-container">
+						<div class="pr-picture">
+							<!-- 这里是图片 -->
+							<img src="/assets/images/projects-pictures/Bridge.jpg" class="project-image">
+						</div>
+					</div>
+					<p class="pr-desc">A text flow generation machine, where all text
+						flows are composed of three initial text segments: a poem by
+						Haizi titled Blindness—To Wittgenstein, an excerpt from
+						Edward Said's Orientalism, and a discussion about Chinese
+						cultural traditions generated by ChatGPT 3.5. As the system
+						operates, parts of the text from these three initial segments
+						will shift based on their encoding in the computer, meaning
+						their content and semantics will become increasingly chaotic
+						over time. The style and color of the text flow will also inherit
+						and change according to its content.
+						These text flows aim to simulate the inevitable semantic shifts
+						that occur in a symbolic system due to changes in time and
+						space, as well as the randomness and violence of such shifts.
+						Each flowing symbol segments space and claims territory,
+						and in every blank area where they are absent, there lies the
+						potential for their next position. This represents a form of
+						aggression, but also a manifestation of freedom.</p>
+					<div class="tag-list">
+						<p class="tag">Generative Video</p>
+						<p class="tag">Independent Creation</p>
+					</div>
+					<br>
+					<p><a href="https://youtu.be/MuapwTZBSE0" target="_blank">[VIDEO ON YOUTUBE]</a></p>
+				</li>
+				<li>
+					<p class="pr-title">WO run on WO</p>
+					<div class="project-media-container">
+						<div class="pr-picture">
+							<!-- 这里是图片 -->
+							<img src="/assets/images/projects-pictures/Wo.png" class="project-image">
+						</div>
+					</div>
+					<p class="pr-desc">One Chinese character representing 'I' runs on top of another
+						Chinese character that represents 'I'. </p>
+					<div class="tag-list">
+						<p class="tag">Video Game</p>
+						<p class="tag">Designer</p>
+						<p class="tag">Programmer</p>
+					</div>
+					<br>
+					<p><a href="https://www.youtube.com/watch?v=imauiE7IpuE" target="_blank">[VIDEO ON YOUTUBE]</a></p>
+				</li>
+			</ul>
+			<div class="grid">
+				<details open>
+				  <summary>
+					<h2>Junk Drawer</h2>
+				  </summary>
+				  <div id="update-list">
+					<ul> <!-- 添加一个 ul 标签来包裹 li 项 -->
+					  <li>
+						<p class="pr-title">The Wrong Human Absorption</p>
+						<div class="project-media-container">
+						  <div class="pr-picture">
+							<img src="/assets/images/projects-pictures/TWHA.png" class="project-image">
+						  </div>
+						</div>
+						<p class="pr-desc">Video Game/ We recreated the childhood game experiences of Where‘s My Water? and Cut the Rope with a dark humor art style. Players need to use various organs as tools, each with distinct functions, to successfully deliver food to the stomach.</p>
+						<br>
+						<p><a href="https://www.youtube.com/watch?v=imauiE7IpuE" target="_blank">[VIDEO ON YOUTUBE]</a></p>
+						<br>
+					  </li>
+					  <li>
+						<p class="pr-title">Function Guardian</p>
+						<div class="project-media-container">
+						  <div class="pr-picture">
+							<img src="/assets/images/projects-pictures/Guardian.png" class="project-image">
+						  </div>
+						</div>
+						<p class="pr-desc">Video Game/ A tower defense game with a rubber hose art style. Players need to follow changes in track and place various weapons at the right time to prevent different enemies from reaching the center.</p>
+						<br>
+						<p><a href="https://youtu.be/DnVvtF9KrRc" target="_blank">[VIDEO ON YOUTUBE]</a></p>
+						<br>
+					  </li>
+					</ul> <!-- 这里关闭了 ul 标签 -->
+				</details>		  
+			</div>
+		</div>
 
-        <div class="project">
-            <h2 class="project-category">Game-Art</h2>
-            <div class="media-container">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/qrLIuFVU2C4" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="image-container">
-                    <img src="images/Tarot.png">
-                </div>
-            </div>
-            <div class="project-description">
-                <div class="project-title">"Cantripped! And C2H5OC2H5" / Programmer & Designer / Featured in the
-                    exhibition at Feinaki Beijing Animation Week on November 15, 2024.
-                </div>
-            </div>
+		<div id="pictures" class="tabs">
+			<h2>PICTURES</h2>
+			<div id="pictures-list">
+				<nav class="hide-noscript">
+					<ul>
+						<li><a class="tab-active pic-coll-tabs" data-id="blender">Blender</a></li>
+						<li><a class="pic-coll-tabs" data-id="photography">Photography</a></li>
+					</ul>
+				</nav>
+				<div id="blender" class="pic-coll">
+					<h3>Here's a collection of photos I made with the open-source software <a href="https://blender.org"
+							target="_blank">Blender</a>! Color-grading was done using <a
+							href="https://www.adobe.com/de/products/photoshop-lightroom-classic.html"
+							target="_blank">Lightroom-Classic</a>!</h3>
+					<div class="row">
+						<img loading="lazy"
+							src="/assets/images/pictures-tab/richardapps-spaceship-testrender-widescreen.jpg"
+							onclick="window.open('https://www.artstation.com/artwork/qe0eo2', '_blank')"
+							alt="A cinematic image of a spaceship flying trough a space-station, created by me with Blender 3D."
+							preload="none">
+						<img loading="lazy" src="/assets/images/pictures-tab/richardapps-cinematic-space-render3.jpg"
+							onclick="window.open('https://www.artstation.com/artwork/rJzJOe', '_blank')"
+							alt="A cinematic image of a spaceship flying above the ground with mountains in the background, created by me with Blender 3D."
+							preload="none">
+					</div>
+					<div class="row">
+						<img loading="lazy"
+							src="/assets/images/pictures-tab/richardapps-default-cube-final-widescreen.jpg"
+							onclick="window.open('https://www.artstation.com/artwork/491knk', '_blank')"
+							alt="A destroyed default-cube flying over an ocean, created by me with Blender 3D."
+							preload="none">
+						<img loading="lazy" src="/assets/images/pictures-tab/richardapps-hms-victory-10.jpg"
+							onclick="window.open('https://www.artstation.com/artwork/49n2Lk', '_blank')"
+							alt="A cinematic image of a 3D-modeled ship inspired by the HMS Victory, created by me with Blender 3D."
+							preload="none">
+					</div>
+				</div>
+				<div id="photography" class="pic-coll">
+					<h3>Here are some images I took in the USA!</h3>
+					<p class="no-mobile"><em>Hover over them to view more information!</em></p>
+					<div class="row row-photography">
+						<div class="img-container">
+							<img src="/assets/images/pictures-tab/P1020060.jpg" loading="lazy"
+								alt="A monochrome picture of the Golden-Gate-Bridge.">
+							<div class="img-desc">
+								<p>The famous Golden-Gate-Bridge! Was a bit cloudy that day, but that probably made it
+									even better!</p>
+							</div>
+						</div>
+						<div class="img-container">
+							<img src="/assets/images/pictures-tab/P1020722.jpg" loading="lazy"
+								alt="A close-up picture of a chipmunk.">
+							<div class="img-desc">
+								<p>A chipmunk! We found them in a lot of different places. They were really friendly,
+									weren't even scared of us, thus making photographing them pretty easy!</p>
+							</div>
+						</div>
+						<div class="img-container">
+							<img src="/assets/images/pictures-tab/P1020951.jpg" loading="lazy"
+								alt="A minimalistic picture of a helicopter.">
+							<div class="img-desc">
+								<p>Nothing much to say here, but sometimes even the simple, minimalistic photos turn out
+									quite cool!</p>
+							</div>
+						</div>
+						<div class="img-container">
+							<img src="/assets/images/pictures-tab/P1020095.jpg" loading="lazy"
+								alt="A picture of a bird in cloudy, dark weather.">
+							<div class="img-desc">
+								<p>We found this cool-looking bird! Fits well with the cloudy weather and the black
+									stone, monochrome from nature!</p>
+							</div>
+						</div>
+					</div>
+					<p>All these were taken with a Panasonic Lumix DMC-TZ71, a surprisingly good travel camera for a low
+						price.</p>
+					<br>
+				</div>
+			</div>
+			<p>Click on one of the pictures to see information about it, or visit my <a
+					href="https://www.artstation.com/richardapps" target="_blank"
+					title="Open my ArtStation profile.">ArtStation</a> profile. I'm also on <a
+					href="https://instagram.com/luqiedesign" target="_blank">Instagram</a>!</p>
+		</div>
 
-            <div class="media-container">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/MuapwTZBSE0" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="image-container">
-                    <img src="images/Bridge.jpg">
-                </div>
-            </div>
-            <div class="project-description">
-                <div class="project-title">"Rain, River, Bridge" / Independent Creation
-                </div>
-            </div>
+		<div id="resources" class="tabs">
+			<h2>
+				neat things that inspired me⋆⭒°.⋆
+			</h2>
+			<br>
+			<div class="grid">
+				<div class="grid-row">
+					<div class="grid-row-box">
+						<h3><strong>- GAME -</strong></h3>
+						<p>Free</p>
+						<p><em>-> 时间的形状 The Shape of Time</em> [<a href="https://yezi.itch.io/time" target="_blank">link</a>]</p>
+						<p><em>-> He Fucked The Girl Out of Me</em> [<a href="https://taylormccue.itch.io/trauma" target="_blank">link</a>]</p>
+						<p><em>-> Coming Out Simulator 2014</em> [<a href="https://ncase.itch.io/coming-out-simulator-2014" target="_blank">link</a>]</p>
+						<p><em>-> 今天去看海吗（available in Chinese only）</em> [<a href="https://kirinomori.itch.io/seaside" target="_blank">link</a>]</p>
+						<p><em>-> 好小狗行为手册（available in Chinese only）</em> [<a href="https://oscillight.itch.io/a-handbook-for-good-doggos" target="_blank">link</a>]</p>
+						<p>Paid</p>
+						<p><em>-> Dujanah</em> [<a href="https://jackspinoza.itch.io/dujanah" target="_blank">link</a>]</p>
+						<p><em>-> Before Your Eyes</em> [<a href="https://store.steampowered.com/app/1082430/Before_Your_Eyes/" target="_blank">link</a>]</p>
+						<p><em>-> Disco Elysium</em> [<a href="https://store.steampowered.com/app/632470/Disco_Elysium__The_Final_Cut/" target="_blank">link</a>]</p>
+						<p><em>-> Devotion</em> [<a href="https://shop.redcandlegames.com/app/devotion" target="_blank">link</a>]</p>
+						<p><em>-> Inside</em> [<a href="https://store.steampowered.com/app/304430/INSIDE/" target="_blank">link</a>]</p>
+						<p><em>-> The Beginner's Guide</em> [<a href="https://store.steampowered.com/app/303210/The_Beginners_Guide/" target="_blank">link</a>]</p>
+					</div>
+				</div>
+				<div class="grid-row">
+					<div class="grid-row-box">
+						<h3><strong>- KINO -</strong></h3>
+						<p><em>-> Bad Luck Banging or Loony Porn</em>[<a href="https://www.imdb.com/title/tt14033502/" target="_blank">link</a>]</p>
+						<p><em>-> HOUSE ハウス</em>[<a href="https://www.imdb.com/title/tt0076162/?ref_=ttfc_fc_tt" target="_blank">link</a>]</p>
+						<p><em>-> Conann</em>[<a href="https://www.imdb.com/title/tt16090596/?ref_=nm_flmg_knf_i_4" target="_blank">link</a>]</p>
+						<p><em>-> Hundreds of Beavers</em>[<a href="https://www.imdb.com/title/tt12818328/" target="_blank">link</a>]</p>
+						<p><em>-> 北京的风很大 There’s a Strong Wind in Beijing</em>[<a href="https://www.imdb.com/title/tt0292278/" target="_blank">link</a>]</p>
+						<p><em>-> 杀马特我爱你 We Were Smart</em>[<a href="https://www.imdb.com/title/tt13809752/" target="_blank">link</a>]</p>
+						<p><em>-> Letter From Your Far-Off Country</em>[<a href="https://www.bilibili.com/video/BV1SN411s7n6/?spm_id_from=333.999.0.0" target="_blank">link</a>]</p>
+						<p><em>-> La mécanique des fluides</em>[<a href="https://www.bilibili.com/video/BV1TZsieTEZa/?spm_id_from=333.999.0.0&vd_source=476f9bb6e40a0d31a459355ea687a5b9" target="_blank">link</a>]</p>	
+					</div>
+				</div>
+				<div class="grid-row">
+					<div class="grid-row-box">
+						<h3><strong>- TEXT & TALK -</strong></h3>
+						<p><em>-> The language of new media -- Lev Manovich</em></p>
+						<p><em>-> The Wretched of the Screen -- Hito Steyerl</em></p>
+						<p><em>-> Invisible Cities -- Italo Calvino</em></p>
+						<p><em>-> The Garden of Forking Paths -- Jorge Luis Borges</em></p>
+						<p><em>-> Alternative Game & Art Scenes -- TJ Thomas</em></p>
+						<p><em>-> Game Design as Narrative Architecture -- Henry Jenkins</em>[<a href="https://paas.org.pl/wp-content/uploads/2012/12/09.-Henry-Jenkins-Game-Design-As-Narrative-Architecture.pdf" target="_blank">link</a>]</p>
+						<p><em>-> Real Talk: Games About Trauma -- Nathalie Lawhead</em>[<a href="http://www.nathalielawhead.com/candybox/real-talk-games-about-trauma-art-caught-between-everything-is-horrible-everything-is-survivable-and-this-is-too-hard-to-talk-about" target="_blank">link</a>]</p>
+						<p><em>-> MDA: A Formal Approach to Game Design and Game Research</em>[<a href="https://users.cs.northwestern.edu/~hunicke/MDA.pdf" target="_blank">link</a>]</p>
+						<p><em>-> Videogames Are Poems -- Jordan Magnuson</em>[<a href="https://www.youtube.com/watch?v=C1UepnhRFOk" target="_blank">link</a>]</p>	
+						<p><em>-> Truth in Game Design -- Jonathan Blow</em>[<a href="https://www.gdcvault.com/play/1014982/Truth-in-Game" target="_blank">link</a>]</p>
+						<p><em>-> From Game-Story to Cyberdrama -- Janet Murray</em>[<a href="https://electronicbookreview.com/thread/first-person/" target="_blank">link</a>]</p>
+						<p><em>-> The Game of Love and Chance -- Paul Virilio</em>[<a href="https://web.archive.org/web/20030708210327/http://www.watsoninstitute.org/infopeace/vy2k/sans.cfm" target="_blank">link</a>]</p>
+						<p><em>-> "I Lose, Therefore I Think" A Search for Contemplation amid Wars of Push-Button Glare -- Shuen-shing Lee</em>[<a href="https://gamestudies.org/0302/lee/" target="_blank">link</a>]</p>
+						<p><em>-> Videogames about self-care are exactly what we need right now -- Chris Priestman</em>[<a href="https://killscreen.com/previously/articles/videogames-self-care-exactly-need-right-now/" target="_blank">link</a>]</p>
+						<p><em>-> Philosophical Games -- Gualeni, Stefano</em>[<a href="https://www.um.edu.mt/library/oar/bitstream/123456789/98011/1/Philosophical%20Games.pdf" target="_blank">link</a>]</p>
+						<p><em>-> Explorable Explanations -- Nicky Case</em>[<a href="https://blog.ncase.me/explorable-explanations/" target="_blank">link</a>]</p>
+						<p><em>-> Molleindustria Manifesto -- Paolo Pedercini</em>[<a href="https://www.molleindustria.org/blog/molleindustria-manifesto-2003/" target="_blank">link</a>]</p>
+						<p><em>-> Are games art school? How to teach game development when there are no jobs -- Brendan Keogh</em>[<a href="https://brkeogh.com/2019/06/22/are-games-art-school-how-to-teach-game-development-when-there-are-no-jobs/" target="_blank">link</a>]</p>
+						<p><em>-> Over games -- Auriea Harvey & Michaël Samyn</em>[<a href="https://tale-of-tales.com/tales/OverGames.html" target="_blank">link</a>]</p>
+						<p><em>-> Winning Isn’t Everything -- Ian Bogost</em>[<a href="https://medium.com/matter/winning-isnt-everything-255b3a26d1cf" target="_blank">link</a>]</p>
+						<p><em>-> Videogames are a Mess -- Ian Bogost</em>[<a href="http://bogost.com/writing/videogames_are_a_mess/" target="_blank">link</a>]</p>
+					</div>
+				</div>
+			</div>
+		</div>
 
-            <div class="media-container">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/KciOwWXHATM" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="image-container">
-                    <img src="images/Binary.png">
-                </div>
-            </div>
-            <div class="project-description">
-                <div class="project-title">"Book of Binary" / Independent Creation
-                </div>
-            </div>
+		<div id="blog" class="tabs">
+			<h1>Blog</h1>
+			<div id="blog-window"></div>
+		</div>
 
-            <div class="media-container">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/imauiE7IpuE" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="image-container">
-                    <img src="images/Wo.png">
-                </div>
-            </div>
-            <div class="project-description">
-                <div class="project-title">“WO run on WO” / Programmer & Designer
-                </div>
-            </div>
-
-            <div class="media-container">
-                <div class="video-container" style="color:palevioletred">
-                    <!-- <iframe src="https://www.youtube.com/embed/imauiE7IpuE" frameborder="0" allowfullscreen></iframe> -->
-                    The video will be uploaded after my application for REPLAY is finished.
-                </div>
-                <div class="image-container">
-                    <img src="images/ActZero.png">
-                </div>
-            </div>
-            <div class="project-description">
-                <div class="project-title">“Act Zero：Portfolio for REPLAY” / Independent Creation
-                </div>
-            </div>
-        </div>
-
-        <div class="project">
-            <h2 class="project-category">About</h2>
-            <div class="media-container">
-                <div class="image-container">
-                    <img src="images/ME.jpg">
-                </div>
-            </div>
-            <div class="project-description">
-                <div class="project-title">
-                    <br>
-                    Zishu Ning (They/Them) is a independent game developer, amateur artist, and game theory enthusiast.
-                    Their work has been showcased at FEINAKI Beijing Animation Week and exhibited at The China
-                    International Cartoon and Game Expo (CCG Expo), earning several awards.
-                </div>
-
-                <div style="text-decoration: underline;">
-                    <br>
-                    <br>
-                    EMAIL: nzs2579228376@gmail.com
-                </div>
-            </div>
-        </div>
-    </div>
+		<div id="home" class="tabs">
+			<div class="grid">
+				<div class="grid-row">
+					<div class="grid-row-box">
+						<h2 id="welcome-title">Home</h2>
+						<p><em>★ Updated on AUGUST 8TH, 2024:</em></p>
+						<br>
+						<p>I am currently studying Software Engineering at
+							South China Normal University.
+							I am an game developer, digital artist, and an
+							independent scholar of game studies.
+							My works have been showcased at FEINAKI Beijing
+							Animation Week and exhibited at the China
+							International Cartoon and Game Expo (CCG Expo).</p>
+						<br>
+						<p>Email: nzs2579228376@gmail.com</p>
+					</div>
+				</div>
+				<div class="grid-row">
+					<div class="grid-row-box">
+						<details open>
+							<summary>
+								<h2>Latest Updates</h2>
+							</summary>
+							<div id="update-list">
+								<p><em>★ NOVEMBER 11TH, 2024:</em> Adding collapsible sections to improve the experience
+									on mobile devices, a lot of other small enhancements and new effects.</p>
+							</div>
+						</details>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
