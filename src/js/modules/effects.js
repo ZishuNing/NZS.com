@@ -1,6 +1,6 @@
 // import { CONFIG } from '../config.js';
 
-const EFFECTS_CSS_URL = '../../../assets/css/style.css';
+const EFFECTS_CSS_URL = '../../../assets/css/effects.css';
 
 if (CONFIG.effectsDisabledByDefault && !('effectsDisabled' in localStorage)) {
 	localStorage.setItem('effectsDisabled', true);
@@ -43,6 +43,26 @@ function initEffectsToggle() {
 			event.preventDefault();
 			toggleEffects();
 		});
+		
+		if (effectsDisabled) 
+		{
+			if (CONFIG.crtEffect) {
+				document.getElementById('canvas').classList.remove('crt-effect');
+			}
+			document.getElementById('noise-overlay').style.display = 'none';
+			document.getElementById('grunge-overlay').style.display = 'none';
+		}
+		else{
+			if (CONFIG.crtEffect) {
+				document.getElementById('canvas').classList.add('crt-effect');
+			}
+			if (CONFIG.noiseEffect) {
+				document.getElementById('noise-overlay').style.display = 'block';
+			}
+			if (CONFIG.grungeOverlay) {
+				document.getElementById('grunge-overlay').style.display = 'block';
+			}
+		}
 	}
 }
 

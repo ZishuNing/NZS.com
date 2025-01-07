@@ -7,16 +7,6 @@
 // import { initTooltips } from './modules/utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-	ImgLazyLoading();
-	addThemeList();
-	initTheme();
-	initEffects();
-	initEffectsToggle();
-	initPosts();
-	initPictureColl();
-	initRouting();
-	initTooltips();
-
 	// Close details-tags on default for mobile devices to reduce large amount of text on home-tab
 	if (window.matchMedia('(max-width: 767px)').matches) {
 		document.querySelectorAll('details').forEach((details) => {
@@ -34,4 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (!CONFIG.grungeOverlay) {
 		document.getElementById('grunge-overlay').style.display = 'none';
 	}
+
+	ImgLazyLoading();
+	addThemeList();
+	initTheme();
+	initEffects();
+	initEffectsToggle();
+	initPosts();
+	initPictureColl();
+	initRouting();
+	initTooltips();
 });
