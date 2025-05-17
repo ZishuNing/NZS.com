@@ -442,7 +442,7 @@ nav ul li a {
 .project-image {
     width: 100%; /* Ensures the image fills the container */
     height: 100%;
-    object-fit: fill; /* Ensures the image scales correctly */
+    object-fit: cover; /* Ensures the image scales correctly */
 	border: 1px solid rgb(26, 26, 26); /* 添加绿色边框 */
 }
 
