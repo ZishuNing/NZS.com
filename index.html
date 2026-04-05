@@ -13,14 +13,13 @@
 	<link rel="icon" type="image/png" href="./assets/images/tvico.png">
 	<link rel="canonical" href="https://zishuning.github.io/NZS.com/">
 
-	<script src="./src/js/main.js" defer></script>
-
 	<link rel="preload" as="font" href="./assets/fonts/terminus-webfont.woff2" type="font/woff2" crossorigin="anonymous">
+	<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-	<link rel="stylesheet" href="./assets/css/style.css?v=2.1">
-	<link rel="stylesheet" href="./assets/css/effects.css?v=1.1">
-	<link rel="stylesheet" href="./assets/css/cursor.css?v=1.1">
-	<!-- increase version after significant changes to prevent browsers from using a old cached version (cache busting) -->
+	<link rel="stylesheet" href="./assets/css/main.min.css?v=3.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+		integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer">
 
 	<meta property="og:title" content="ZishuNing">
 	<meta property="og:description"
@@ -32,9 +31,7 @@
 	<meta name="robots" content="index, follow">
 	<meta name="revisit-after" content="7 days">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-		integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-		crossorigin="anonymous" referrerpolicy="no-referrer">
+	<script src="./src/js/bundle.min.js?v=2" defer></script>
 
 	<style>
 		.no-fouc {
@@ -644,18 +641,6 @@
 		</div>
 	</div>
 
-	<!-- Include your JS files in order -->
-    <script src="./src/js/config.js"></script>  <!-- config.js (contains the CONFIG object) -->
-	<script src="./src/js/modules/loading.js"></script>   <!-- rgb.js -->
-	<script src="./src/js/modules/utils.js"></script>   <!-- rgb.js -->
-	<script src="./src/js/modules/effects.js"></script>   
-	<script src="./src/js/modules/animations.js"></script>   
-    <script src="./src/js/modules/theme.js"></script>   <!-- theme.js -->
-	<script src="./src/js/modules/routing.js"></script>     <!-- rgb.js -->
-	<script src="./src/js/modules/navigation.js"></script>     <!-- rgb.js -->
-    <script src="./src/js/modules/blog.js"></script>    <!-- blog.js -->
-	<script src="./src/js/archive.js"></script>    <!-- pictures.js -->
-    <script src="./src/js/main.js"></script>    <!-- main.js (entry point) -->
 </body>
 
 </html>
