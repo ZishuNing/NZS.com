@@ -34,5 +34,6 @@ function initRouting() {
 	window.addEventListener('hashchange', function () {
 		routing(location.hash);
 	});
-	routing(location.hash || '#' + DEFAULT_HASH);
+	if (!location.hash) defaultHash();
+  routing(location.hash);
 }

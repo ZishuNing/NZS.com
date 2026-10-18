@@ -80,6 +80,7 @@ function createPostElement(post) {
 }
 
 function initPosts() {
+  if (!BLOG_URL) return;
 	fetchPosts()
 		.then((posts) => (POSTS_CONTAINER.innerHTML = posts.map(createPostElement).join('')))
 		.catch((error) => console.error(error));

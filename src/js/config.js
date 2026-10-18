@@ -13,12 +13,12 @@ const CONFIG = {
 	grungeOverlay: true,
 
 	// tabs
-	defaultHash: '#about',
+	defaultHash: 'about',
 	animationOnTabChange: true, // disabled when effects are disabled
 	writeAnimationOnTabChange: false, // animationOnTabChange must be true | may cause performance issues
 
 	// blog
-	blogUrl: 'https://data.richardapps.net/blog.xml', // example: '/src/example/blog.xml'
+	blogUrl: '', // example: '/src/example/blog.xml'
 	useExample: false,
 	writeAnimationOnPostOpen: true,
 	showEstimatedReadTime: true,
